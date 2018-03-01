@@ -1,0 +1,48 @@
+<div class="profile-container">
+    <mat-accordion *ngIf="user" multi="true">
+        <mat-expansion-panel expanded="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon>info_outline</mat-icon>&nbsp;基本信息
+            </mat-panel-title>
+            <mat-panel-description>
+              UID，用户名，注册时间，邮箱，密码
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+      
+          <p>UID: {{user.uid}}</p>
+          <p>用户名：{{user.username}}</p>
+          <p>注册时间：{{user.registerTime|date:'yyyy/MM/dd hh:mm'}}</p>
+          <p>邮箱：{{user.email}}</p>
+          <mat-form-field>
+            <input matInput [formControl]="email" type="email" placeholder="新邮箱">
+            <mat-error *ngIf="email.hasError('email')">邮箱格式错误</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [formControl]="emailCode" placeholder="验证码">
+            <mat-error *ngIf="email.hasError('required')">必须输入验证码</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="warn" [disabled]="sending" (click)="sendEmail()">{{sending?'30秒后可重试':'发送验证码'}}</button>
+          <button mat-raised-button color="primary" (click)="changeEmail()">修改</button>
+          <br/>
+          <mat-form-field>
+              <input matInput type="password" [formControl]="oldPsw" placeholder="输入旧密码">
+              <mat-error *ngIf="oldPsw.invalid">必须输入旧密码</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+              <input matInput type="password" [formControl]="newPsw" placeholder="输入新密码">
+              <mat-error *ngIf="newPsw.invalid">必须输入新密码</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="warn" (click)="changePsw()">修改密码</button>
+        </mat-expansion-panel>
+        <mat-expansion-panel expanded="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon>image</mat-icon>头像
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-image-cropper [imgSrc]="user.portrait" (imgChange)="imageSelected($event)"></app-image-cropper>
+          <button style="margin-top:10px;" mat-raised-button color="accent" (click)="changePortrait()">更新头像</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+</div>

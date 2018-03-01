@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>
+  <mat-icon matTooltip="返回" matTooltipPosition="below" (click)="goToPrevPage()" class="prevPageArrow" *ngIf="loadSuccess&&pageStack.length!=0">arrow_back</mat-icon>
+  文件夹
+</h2>
+<mat-dialog-content>
+  <mat-list *ngIf="loadSuccess">
+    <p *ngIf="list?.length==0">空文件夹</p>
+    <mat-list-item *ngFor="let dir of list" (click)="loadFolder(dir.did)">
+      <mat-icon mat-list-icon>folder</mat-icon>{{dir.dirName}}
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+  <p *ngIf="!loadSuccess">加载失败</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>取消</button>
+  <button mat-button color="accent" (click)="confirm()" [disabled]="!loadSuccess" >确定</button>
+</mat-dialog-actions>

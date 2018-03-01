@@ -1,0 +1,20 @@
+<mat-grid-list cols="11" rowHeight="fit">
+  <mat-grid-tile colspan="2">
+      <mat-nav-list>
+          <a *ngFor="let f of functions" mat-list-item [routerLink]="f.link">
+              <mat-icon mat-list-icon>{{f.icon}}</mat-icon>
+              <h6 mat-line>{{f.name}}</h6>
+          </a>
+      </mat-nav-list>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="9">
+      <mat-list>
+          <mat-list-item *ngFor="let r of rubbishes">
+            <mat-icon matListIcon>{{r.file.type=='directory'?'folder':'note'}}</mat-icon>
+            {{r.file.type=='directory'?r.file.dirName:r.file.title}}
+            <span class="example-fill-remaining-space"></span>
+            <button mat-raised-button color="accent" (click)="recover(r)">恢复</button>
+          </mat-list-item>
+        </mat-list>
+  </mat-grid-tile>
+</mat-grid-list>

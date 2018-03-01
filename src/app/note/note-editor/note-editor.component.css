@@ -1,0 +1,21 @@
+mat-toolbar{
+    background-color: white;
+    border-bottom: 1px solid #dddddd;
+}
+.title-form {
+    width: 70%;
+}
+input {
+    width: 100%;
+    border: none;
+    height: 100%;
+    outline: none;
+    font-size: 1.2em;
+}
+.save-btn {
+    border: solid 1px;
+    border-radius: 5px;
+}
+.hidden-content {
+    display: none;
+}

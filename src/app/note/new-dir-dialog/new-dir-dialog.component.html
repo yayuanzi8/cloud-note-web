@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>新建文件夹</h2>
+<mat-dialog-content>
+  <form [formGroup]="options">
+    <mat-form-field
+      [hideRequiredMarker]="options.value.hideRequired"
+      [floatLabel]="options.value.floatLabel">
+        <input matInput placeholder="文件夹名称" name="dir_name" [formControl]="dirNameInfo" [(ngModel)]="dir_name" required>
+        <button mat-button *ngIf="dir_name" matSuffix mat-icon-button aria-label="Clear" (click)="dir_name=''">
+            <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="dirNameInfo.invalid">{{getDirNameErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="cancel()">取消</button>
+  <button mat-button color="accent" (click)="createNewDir()" [disabled]="dirNameInfo.invalid || processingSubmit" [mat-dialog-close]="true">{{processingSubmit?'提交中...':'提交'}}</button>
+</mat-dialog-actions>

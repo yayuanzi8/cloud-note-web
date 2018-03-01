@@ -1,0 +1,14 @@
+<mat-card class="share-note-card" *ngIf="note!=null">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{note?.title}}</mat-card-title>
+    <mat-card-subtitle>{{note?.uid}}创建于{{note?.createTime|date:"yyyy.MM.dd HH:mm"}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content [innerHTML]="note?.content"></mat-card-content>
+  <mat-card-actions>
+    <button mat-button style="color:rgb(192, 59, 59);">
+      <mat-icon>launch</mat-icon>
+      保存到我的笔记
+    </button>
+  </mat-card-actions>
+</mat-card>

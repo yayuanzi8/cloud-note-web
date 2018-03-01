@@ -1,0 +1,33 @@
+<form class="login-form" [formGroup]="options">
+  <mat-grid-list cols="1" rowHeight="70px">
+    <mat-grid-tile>
+      <mat-form-field
+        [hideRequiredMarker]="options.value.hideRequired"
+        [floatLabel]="options.value.floatLabel">
+        <input matInput placeholder="用户名" name="username" [formControl]="usernameInfo" [(ngModel)]="username" required>
+        <button mat-button *ngIf="username" matSuffix mat-icon-button aria-label="Clear" (click)="username=''">
+            <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="usernameInfo.invalid">{{getUsernameErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field
+        [hideRequiredMarker]="options.value.hideRequired"
+        [floatLabel]="options.value.floatLabel">
+        <input matInput placeholder="密码" type="password" name="password" [formControl]="passwordInfo" [(ngModel)]="password" required>
+        <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> -->
+        <button mat-button *ngIf="password" matSuffix mat-icon-button aria-label="Clear" (click)="password=''">
+            <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="passwordInfo.invalid">{{getPasswordErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <button mat-raised-button color="primary" (click)="login()" [disabled]="usernameInfo.invalid || passwordInfo.invalid || processingLogin">{{processingLogin?'登录中...':'登录'}}</button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-error *ngIf="loginError!=null">{{loginError}}</mat-error>
+      </mat-grid-tile>
+  </mat-grid-list>
+</form>

@@ -1,0 +1,23 @@
+mat-list-item:hover {
+    cursor: pointer;
+    background-color: #eeeeee;
+}
+mat-dialog-content {
+    width: 500px;
+    height: 700px;
+    border: solid 1px #dddddd;
+}
+.prevPageArrow {
+    color: rgb(30, 174, 210);
+    cursor: pointer;
+}
+mat-dialog-actions {
+    text-align: right;
+}
+h2 {
+    vertical-align: middle;
+}
+mat-icon {
+    width: 32px;
+    height: 32px;
+}

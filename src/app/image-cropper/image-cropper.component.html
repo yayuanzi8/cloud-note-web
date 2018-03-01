@@ -1,0 +1,10 @@
+<div>
+  <div style="margin-bottom: 10px;">
+      <input #imageInputFile type="file" style="display: none;" accept="image/jpeg" (change)="imageChange($event)">
+      <button mat-raised-button color="primary" (click)="delegateToFileInput()">
+          <mat-icon>insert_photo</mat-icon>&nbsp;选择头像
+      </button>
+  </div>
+  <img #img id="cropper-image" [src]="imgSrc"/>
+  <!-- <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper> -->
+</div>

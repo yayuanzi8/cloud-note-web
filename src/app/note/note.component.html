@@ -1,0 +1,18 @@
+<mat-grid-list cols="11" rowHeight="fit">
+  <mat-grid-tile colspan="2">
+      <mat-nav-list>
+          <a *ngFor="let f of functions" mat-list-item [routerLink]="f.link">
+              <mat-icon mat-list-icon>{{f.icon}}</mat-icon>
+              <h6 mat-line>{{f.name}}</h6>
+          </a>
+      </mat-nav-list>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="9">
+      <div class="decorator" *ngIf="dirFlag">
+        <app-note-list [dirId]="currentDirId"></app-note-list>
+      </div>
+      <div class="decorator" *ngIf="noteFlag">
+        <app-note-editor elementId="cloud-note-editor" [noteId]="noteId"></app-note-editor>
+      </div>
+  </mat-grid-tile>
+</mat-grid-list>

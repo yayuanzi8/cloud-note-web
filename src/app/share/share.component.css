@@ -1,0 +1,9 @@
+.share-note-card {
+    margin: 2em auto;
+    width: 60%;
+}
+  
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}

@@ -1,0 +1,12 @@
+<mat-toolbar>
+     <form class="title-form" [formGroup]="options">
+           <input matInput [formControl]="titleInfo" [(ngModel)]="note.title" name="title" required>
+     </form>
+     &nbsp;
+     <button class="save-btn" mat-button color="primary" [disabled]="titleInfo.invalid || processingSave" (click)="saveNote()">保存</button>
+     <button mat-icon-button matTooltip="文字识别" matTooltipPosition="below" (click)="uploadOCRImage()">
+         <mat-icon>camera_enhance</mat-icon>
+     </button>
+     <input #ocrImage ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" class="hidden-content" type="file">
+</mat-toolbar>
+<textarea id="{{elementId}}"></textarea>

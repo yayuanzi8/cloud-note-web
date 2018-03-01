@@ -1,0 +1,47 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar color="primary">
+    <span><a routerLink="/note/root">{{title}}</a></span>
+  
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+  
+    <span *ngIf="user==null">
+        <a mat-button (click)="login()">登录</a>
+        <a mat-button routerLink="register">注册</a>
+        <a mat-button href="http://www.baidu.com" target="_blank">
+            <mat-icon>get_app</mat-icon>下载客户端
+        </a>
+    </span>
+    <span *ngIf="user!=null">
+        <a mat-icon-button [matMenuTriggerFor]="menu">
+            <img style="height: 24px;width: 24px;border-radius: 50%;" src="{{user.portrait}}"/>
+            <mat-icon>arrow_drop_down</mat-icon>
+        </a>
+        <mat-menu #menu="matMenu">
+            <button (click)="navigate('note/root')" mat-menu-item>
+                <mat-icon>folder</mat-icon>
+                <span>我的文件</span>
+            </button>
+            <button (click)="navigate('myshare')" mat-menu-item>
+                <mat-icon>share</mat-icon>
+                <span>我的分享</span>
+            </button>
+            <button (click)="navigate('rubbish')" mat-menu-item>
+                <mat-icon>delete_sweep</mat-icon>
+                <span>回收站</span>
+            </button>
+            <button (click)="navigate('profile')" mat-menu-item>
+                <mat-icon>attachment</mat-icon>
+                <span>个人信息</span>
+            </button>
+            <button (click)="logout()" mat-menu-item>
+                <mat-icon>power_settings_new</mat-icon>
+                <span>注销</span>
+            </button>
+        </mat-menu>
+        <a mat-button href="http://www.baidu.com" target="_blank">
+            <mat-icon>get_app</mat-icon>下载客户端
+        </a>
+    </span>
+</mat-toolbar>
+<router-outlet></router-outlet>

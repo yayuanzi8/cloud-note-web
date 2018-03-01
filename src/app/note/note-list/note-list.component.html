@@ -1,0 +1,61 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+    <button *ngIf="pageStack.length>0" (click)="prevPage()" mat-icon-button matTooltip="返回" matTooltipPosition="below">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span><a mat-raised-button color="primary" (click)="openNewNoteDialog()">新建笔记</a></span>&nbsp;
+    <span><a mat-raised-button color="primary" (click)="openNewDirDialog()">新建文件夹</a></span>
+    <button (click)="refreshFiles()" mat-icon-button matTooltip="刷新" matTooltipPosition="below">
+            <mat-icon>refresh</mat-icon>
+    </button>
+    <div class="func-button-group" *ngIf="checkedDir.length>0||checkedNote.length>0">
+        <button (click)="moveDirAndNote()" mat-icon-button matTooltip="移动到" matTooltipPosition="below">
+            <mat-icon>launch</mat-icon>
+        </button>
+        <button (click)="copyDirAndNote()" mat-icon-button matTooltip="复制到" matTooltipPosition="below">
+            <mat-icon>content_copy</mat-icon>
+        </button>
+        <button [disabled]="checkedNote.length!=1||checkedDir.length!=0" (click)="share()" mat-icon-button matTooltip="分享" matTooltipPosition="below">
+            <mat-icon>share</mat-icon>
+        </button>
+        <button (click)="moveDirAndNoteToTrash()" mat-icon-button matTooltip="移入回收站" matTooltipPosition="below">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button (click)="deleteDirAndNote()" mat-icon-button color="warn" matTooltip="彻底删除" matTooltipPosition="below">
+            <mat-icon>delete_forever</mat-icon>
+        </button>
+    </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-grid-list cols="8" gutterSize="0px">
+  <div class="dir-gird" *ngIf="files.length>0">
+      <mat-grid-tile *ngFor="let file of files" colspan="1" class="tile-container">
+          <mat-card *ngIf="file.type==='directory'" class="example-card">
+              <p class="checkbox-container">
+                    <mat-checkbox (change)="toggleCheck($event,file)" class="example-margin"></mat-checkbox>
+              </p>
+              <div (click)="navigateToDir(file.did)">
+              <mat-icon class="list-folder-icon">folder</mat-icon>
+              <mat-card-content>
+                  <p class="file-name">
+                      {{file.dirName}}
+                  </p>
+              </mat-card-content>
+              </div> 
+          </mat-card>
+          <mat-card *ngIf="file.type==='note'" class="example-card">
+                <p class="checkbox-container">
+                  <mat-checkbox (change)="toggleCheck($event,file)" class="example-margin"></mat-checkbox>
+                </p>
+                <div (click)="navigateToNote(file.nid)">
+                  <mat-icon class="list-note-icon">note</mat-icon>
+                  <mat-card-content>
+                      <p class="file-name">
+                          {{file.title}}
+                      </p>
+                  </mat-card-content>
+                </div>
+              </mat-card>
+      </mat-grid-tile>
+  </div>
+</mat-grid-list>

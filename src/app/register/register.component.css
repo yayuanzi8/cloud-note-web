@@ -1,0 +1,14 @@
+.container {
+    margin: 30px auto;
+    width: 40%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.register-text {
+    text-align: left;
+    font-size: 1.6em;
+    color: brown;
+}
